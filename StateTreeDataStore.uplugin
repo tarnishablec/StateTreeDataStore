@@ -1,0 +1,23 @@
+﻿{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "StateTreeDataStore",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "tarnishablec",
+	"CreatedByURL": "https://github.com/tarnishablec",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "StateTreeDataStore",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
