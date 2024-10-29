@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "StateTreeDataStore_Base.h"
 #include "StateTreePropertyRef.h"
-#include "Blueprint/StateTreeTaskBlueprintBase.h"
+#include "StateTreeTaskBase.h"
 
 #include "StateTreeTask_DataStoreSet.generated.h"
 
@@ -31,9 +31,12 @@ public:
     )
     FStateTreePropertyRef Value;
 
+#if WITH_EDITORONLY_DATA
     UPROPERTY()
     TSubclassOf<UStateTreeDataStore_Base> DsClass;
+#endif
 
+#if WITH_EDITOR
     UFUNCTION()
     TArray<FString> GetPropertyNames() const
     {
@@ -48,12 +51,13 @@ public:
 
         return Result;
     };
-
+    
     void Reset()
     {
         Property = FName();
         DsClass = nullptr;
     }
+#endif
 };
 
 // STATETREE_POD_INSTANCEDATA(UStateTreeTask_DSSet_InstanceData)
@@ -64,10 +68,12 @@ public:
 USTRUCT(BlueprintType)
 struct STATETREEDATASTORE_API FStateTreeTask_DataStoreSet : public FStateTreeTaskCommonBase
 {
+    using UInstanceDataType = UStateTreeTask_DataStoreSet_InstanceData;
+    
     GENERATED_BODY()
     virtual const UStruct* GetInstanceDataType() const override
     {
-        return UStateTreeTask_DataStoreSet_InstanceData::StaticClass();
+        return UInstanceDataType::StaticClass();
     }
 
 #if WITH_EDITOR
